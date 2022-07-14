@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+service RangeService {
+  rpc Range (Request) returns (stream Response);
+}
+
+message Request {
+  int64 start = 1;
+  int64 stop = 2;
+  int64 step = 3;
+}
+
+message Response {
+  int64 value = 1;
+}
