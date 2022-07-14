@@ -105,3 +105,25 @@ def test_clear():
     message.Clear()
     assert message.str == ""
     assert message.int == 0
+
+
+def test_serialize():
+    message = message_pb2.Message(str="test_str")
+    assert message.SerializeToString() == b"\n\x08test_str"
+
+
+def test_deserialize():
+    # message = message_pb2.Message(
+    #     str="1",
+    #     int=1,
+    #     bool=True,
+    #     inner_model=message_pb2.InnerModel(value="1"),
+    #     repeated_str=["1", "2", "3"]
+    # )
+    message = message_pb2.Message()
+    message.ParseFromString(b'\n\x011\x10\x01\x18\x01"\x03\n\x011*\x011*\x012*\x013')
+    assert message.str == "1"
+    assert message.int == 1
+    assert message.bool is True
+    assert message.inner_model == message_pb2.InnerModel(value="1")
+    assert message.repeated_str == ["1", "2", "3"]
