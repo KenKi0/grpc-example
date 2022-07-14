@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+message InnerModel {
+  optional string value = 1;
+}
+
+message Message {
+  optional string str = 1;
+  optional int64 int = 2;
+  optional bool bool = 3;
+  optional InnerModel inner_model = 4;
+  repeated string repeated_str = 5;
+}
