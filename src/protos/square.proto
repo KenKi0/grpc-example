@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+service SquareService {
+  rpc Square (stream Request) returns (stream Response);
+}
+
+message Request {
+  int64 value = 1;
+}
+
+message Response {
+  int64 value = 1;
+}
